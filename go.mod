@@ -1,3 +1,3 @@
 module github.com/mdanialr/hello-world
 
-go 1.19
+go 1.20
