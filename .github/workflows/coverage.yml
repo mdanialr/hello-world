@@ -15,6 +15,25 @@ jobs:
     needs: ci
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.20.x
+          cache: false
+
+      - name: Build
+        run: go build -v ./...
+
+      - name: Set up Mockery
+        run: |
+          go install github.com/vektra/mockery/v2@v2.32.0
+
+      - name: Test
+        run: go test -v ./...
+
       - name: Update Coverage Report
         uses: ncruces/go-coverage-report@v0
         with:
